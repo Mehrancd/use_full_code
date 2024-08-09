@@ -9,11 +9,13 @@ usefull code in medical image processing and cluster usage
 -How to automatically set lung window for CT images in Slicer (the parameters inside window level can be modified as you require):
 
 in slicer python interactor window:
-all_nodes = slicer.mrmlScene.GetNodesByClass('vtkMRMLScalarVolumeNode')
-for ct in all_nodes:
-    ct.GetDisplayNode().SetAutoWindowLevel(False)
-    ct.GetDisplayNode().SetWindowLevel(1500,-500) 
->>> 
+
+
+    all_nodes = slicer.mrmlScene.GetNodesByClass('vtkMRMLScalarVolumeNode')
+    for ct in all_nodes:
+        ct.GetDisplayNode().SetAutoWindowLevel(False)
+        ct.GetDisplayNode().SetWindowLevel(1500,-500) 
+    >>> 
 
 - How to stop repeating password on ssh cluster:
 $ ssh-keygen -t rsa -b 4096 -C "your_email@ucl.ac.uk"
