@@ -71,9 +71,10 @@ in slicer python interactor window:
     done < "$FILE_LIST"
     echo "File transfer process completed."
 
-- How to hide current running code in terminal:
-1- install screen: sudo apt install screen
- hide current processing: 
-   $ screen
- bring back current procesing:
-   $ screen -r
+How to hide current running code in terminal:
+
+   $1- install screen: sudo apt install screen
+     hide current processing: 
+   $screen
+     bring back current procesing:
+   $screen -r
