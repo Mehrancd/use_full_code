@@ -73,8 +73,10 @@ in slicer python interactor window:
 
 -How to hide current running code in terminal:
 
-   $install screen: sudo apt install screen
-     hide current processing: 
-   $screen
-     bring back current procesing:
-   $screen -r
+    $install screen: sudo apt install screen
+hide current processing: 
+
+    $screen
+bring back current procesing:
+
+    $screen -r
