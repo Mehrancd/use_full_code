@@ -18,11 +18,16 @@ in slicer python interactor window:
     >>> 
 
 - How to stop repeating password on ssh cluster:
-$ ssh-keygen -t rsa -b 4096 -C "your_email@ucl.ac.uk"
-$ ssh-copy-id -i ~/.ssh/id_rsa.pub cluster_ID@comic
+
+    $ssh-keygen -t rsa -b 4096 -C "your_email@ucl.ac.uk"
+    $ssh-copy-id -i ~/.ssh/id_rsa.pub cluster_ID@comic
+  
  three times Enter->Enter->Enter
+
+ 
  then each time you only need to do:
-$ ssh cluster_ID@comic
+ 
+    $ ssh cluster_ID@comic
 
 - How to pull files from cluster to your local machine:
     method 1: rsync
