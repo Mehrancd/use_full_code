@@ -29,7 +29,8 @@ in slicer python interactor window:
     $ ssh cluster_ID@comic
 
 -How to pull files from cluster to your local machine:
-    method 1: rsync
+
+    $method 1: rsync
     method 2: in linux files→ "Other Locations" → Enter server addresses : ssh://cluster_ID@... and copy-paste
     method 3: create list files (e.g., remote_listing.txt) and run a bash file:
     REMOTE_USER="youruser"
