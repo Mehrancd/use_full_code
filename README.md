@@ -17,13 +17,12 @@ in slicer python interactor window:
         ct.GetDisplayNode().SetWindowLevel(1500,-500) 
     >>> 
 
-- How to stop repeating password on ssh cluster:
+How to stop repeating password on ssh cluster:
 
     $ssh-keygen -t rsa -b 4096 -C "your_email@ucl.ac.uk"
     $ssh-copy-id -i ~/.ssh/id_rsa.pub cluster_ID@comic
   
  three times Enter->Enter->Enter
-
  
  then each time you only need to do:
  
