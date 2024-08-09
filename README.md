@@ -6,7 +6,7 @@
 
      $find ./ -type f -name "*part_of_file*"$
 
--How to automatically set lung window for CT images in Slicer (the parameters inside window level can be modified as you require):
+*-How to automatically set lung window for CT images in Slicer (the parameters inside window level can be modified as you require):*
 
 in slicer python interactor window:
 
@@ -17,7 +17,7 @@ in slicer python interactor window:
         ct.GetDisplayNode().SetWindowLevel(1500,-500) 
     >>> 
 
--How to stop repeating password on ssh cluster:
+*-How to stop repeating password on ssh cluster:*
 
     $ssh-keygen -t rsa -b 4096 -C "your_email@ucl.ac.uk"
     $ssh-copy-id -i ~/.ssh/id_rsa.pub cluster_ID@comic
@@ -28,7 +28,7 @@ in slicer python interactor window:
  
     $ ssh cluster_ID@comic
 
--How to pull files from cluster to your local machine:
+*-How to pull files from cluster to your local machine:*
 
     $method 1: rsync
     method 2: in linux files→ "Other Locations" → Enter server addresses : ssh://cluster_ID@... and copy-paste
@@ -71,7 +71,7 @@ in slicer python interactor window:
     done < "$FILE_LIST"
     echo "File transfer process completed."
 
--How to hide current running code in terminal:
+*-how to hide current running code in terminal:*
 
     $install screen: sudo apt install screen
 hide current processing: 
