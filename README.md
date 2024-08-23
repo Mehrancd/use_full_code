@@ -83,4 +83,4 @@ bring back current procesing:
     
 *-how to find a file in directory or subdirectory in terminal:*
 
-    $find ./ -type f -name "COPDGene_A68731*"
+    $find /path_to_directory/ -type f -name "COPDGene_A68731*"
