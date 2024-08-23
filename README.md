@@ -80,3 +80,7 @@ hide current processing:
 bring back current procesing:
 
     $screen -r
+    
+*-how to find a file in directory or subdirectory in terminal:*
+
+    $find ./ -type f -name "COPDGene_A68731*"
