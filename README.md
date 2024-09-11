@@ -90,7 +90,7 @@ bring back current procesing:
 in slicer python interactor window:
 
 
-    import csv
+     import csv
      import DICOMScalarVolumePlugin
      import os
      import pandas as pd
@@ -122,6 +122,7 @@ in slicer python interactor window:
              view.mrmlViewNode().SetBackgroundColor2(0,0,0)
              view.mrmlViewNode().SetBoxVisible(False)
              view.mrmlViewNode().SetAxisLabelsVisible(False)
+             view.resetCamera()
              view.forceRender()
              renderWindow = view.renderWindow()
              renderWindow.SetAlphaBitPlanes(1)
@@ -132,6 +133,6 @@ in slicer python interactor window:
              writer.SetFileName(output_path+'/'+ID+'.jpg')
              writer.SetInputConnection(wti.GetOutputPort())
              writer.Write()
-             slicer.mrmlScene.Clear(0) 
-         >>> 
+             slicer.mrmlScene.Clear(0)
+              >>> 
 
