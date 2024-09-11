@@ -84,3 +84,54 @@ bring back current procesing:
 *-how to find a file in directory or subdirectory in terminal:*
 
     $find /path_to_directory/ -type f -name "COPDGene_A68731*"
+
+*-How to generate 3D rendered label for QC in Slicer:*
+
+in slicer python interactor window:
+
+
+    import csv
+     import DICOMScalarVolumePlugin
+     import os
+     import pandas as pd
+     input_path1='/media/mehran/SSD Storage 2/AAVS/COPDGene_AAVS'
+     output_path='/media/mehran/SSD Storage 2/AAVS/COPDGene_AAVS_2d'
+     list_files_xlsx=pd.read_excel('/media/mehran/SSD Storage 2/AAVS/List_QC_COPDGene_half.xlsx')
+     print('number of summit subjects:',len(list_files_xlsx))
+     list_files=[f for f in os.listdir(input_path1) if f.endswith('.nii.gz')]
+     for i in range(len(list_files_xlsx)):
+         ID=list_files_xlsx.at[i,'ID']
+         if ID+'.nii.gz' in list_files:
+             slicer.util.loadLabelVolume(input_path1+'/'+ID+'.nii.gz')
+             labelMapNode = getNode(ID)
+             thresholdValue = 1
+             segmentationNode = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLSegmentationNode",'Segm1')
+             slicer.modules.segmentations.logic().ImportLabelmapToSegmentationNode(labelMapNode, segmentationNode)
+             segmentIDs = vtk.vtkStringArray()
+             segmentationNode.GetSegmentation().GetSegmentIDs(segmentIDs)
+             displayNode = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLSegmentationDisplayNode",'disp_segm')
+             segmentationNode.SetAndObserveDisplayNodeID(displayNode.GetID())
+             segmentationDisplayNode = segmentationNode.GetDisplayNode()
+             segmentationDisplayNode.SetSegmentVisibility(segmentIDs.GetValue(0), False)
+             segmentationDisplayNode.SetSegmentVisibility(segmentIDs.GetValue(2), False)
+             slicer.modules.segmentations.logic().ExportVisibleSegmentsToModels(segmentationNode, 0)
+             segmentationDisplayNode.SetVisibility3D(True)
+             view = slicer.app.layoutManager().threeDWidget(0).threeDView()
+             view.resetFocalPoint()
+             view.mrmlViewNode().SetBackgroundColor(0,0,0)
+             view.mrmlViewNode().SetBackgroundColor2(0,0,0)
+             view.mrmlViewNode().SetBoxVisible(False)
+             view.mrmlViewNode().SetAxisLabelsVisible(False)
+             view.forceRender()
+             renderWindow = view.renderWindow()
+             renderWindow.SetAlphaBitPlanes(1)
+             wti = vtk.vtkWindowToImageFilter()
+             wti.SetInputBufferTypeToRGBA()
+             wti.SetInput(renderWindow)
+             writer = vtk.vtkJPEGWriter()
+             writer.SetFileName(output_path+'/'+ID+'.jpg')
+             writer.SetInputConnection(wti.GetOutputPort())
+             writer.Write()
+             slicer.mrmlScene.Clear(0) 
+         >>> 
+
