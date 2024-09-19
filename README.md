@@ -136,3 +136,18 @@ in slicer python interactor window:
              slicer.mrmlScene.Clear(0)
               >>> 
 
+*-how to estimate thoracic volume:*
+     for coronal_idx in range(lung_mask.shape[1]):
+         coronal_slice = lung_mask[:, coronal_idx, :]    
+         for row_idx in range(coronal_slice.shape[0]):
+             row = coronal_slice[row_idx, :]        
+             non_zero_indices = np.nonzero(row)[0]        
+             if non_zero_indices.size > 0:
+                 first_idx = non_zero_indices[0]
+                 last_idx = non_zero_indices[-1]            
+                 row[first_idx:last_idx+1] = 1       
+             coronal_slice[row_idx, :] = row    
+         lung_mask[:, coronal_idx, :] = coronal_slice
+     filled_lung_mask_sitk = sitk.GetImageFromArray(lung_mask)
+     filled_lung_mask_sitk.CopyInformation(img)
+     sitk.WriteImage(filled_lung_mask_sitk, 'filled_lung_mask.nii.gz')
