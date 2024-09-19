@@ -137,6 +137,7 @@ in slicer python interactor window:
               >>> 
 
 *-how to estimate thoracic volume:*
+
      for coronal_idx in range(lung_mask.shape[1]):
          coronal_slice = lung_mask[:, coronal_idx, :]    
          for row_idx in range(coronal_slice.shape[0]):
