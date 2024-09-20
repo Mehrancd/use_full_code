@@ -13,8 +13,9 @@ in slicer python interactor window:
 
     all_nodes = slicer.mrmlScene.GetNodesByClass('vtkMRMLScalarVolumeNode')
     for ct in all_nodes:
-        ct.GetDisplayNode().SetAutoWindowLevel(False)
-        ct.GetDisplayNode().SetWindowLevel(1500,-500) 
+        if isinstance(ct, slicer.vtkMRMLScalarVolumeNode):
+            ct.GetDisplayNode().SetAutoWindowLevel(False)
+            ct.GetDisplayNode().SetWindowLevel(1500,-500) 
     >>> 
 
 *-How to stop repeating password on ssh cluster:*
