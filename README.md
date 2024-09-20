@@ -13,7 +13,7 @@ in slicer python interactor window:
 
     all_nodes = slicer.mrmlScene.GetNodesByClass('vtkMRMLScalarVolumeNode')
     for ct in all_nodes:
-        if isinstance(ct, slicer.vtkMRMLLabelMApVolumeNode):
+        if isinstance(ct, slicer.vtkMRMLLabelMapVolumeNode):
             continue
         else:
             ct.GetDisplayNode().SetAutoWindowLevel(False)
