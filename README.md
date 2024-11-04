@@ -18,7 +18,7 @@ in slicer python interactor window:
         else:
             ct.GetDisplayNode().SetAutoWindowLevel(False)
             ct.GetDisplayNode().SetWindowLevel(1500,-500) 
-    >>> 
+     
 
 *-How to stop repeating password on ssh cluster:*
 
