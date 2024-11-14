@@ -155,3 +155,44 @@ in slicer python interactor window:
      filled_lung_mask_sitk = sitk.GetImageFromArray(lung_mask)
      filled_lung_mask_sitk.CopyInformation(img)
      sitk.WriteImage(filled_lung_mask_sitk, 'filled_lung_mask.nii.gz')
+
+     
+*-how to combine a folder of xlsx files into one:*
+
+     import pandas as pd
+     import glob
+     import argparse
+     import os
+     import numpy as np
+     
+     def merge_excel_files(input_folder, output_file):
+         # Construct the file path pattern for all .xlsx files in the input folder
+         file_paths = glob.glob(os.path.join(input_folder, "*.xlsx"))
+         
+         dataframes = []
+         for file_path in file_paths:
+             df = pd.read_excel(file_path)
+             df = df.replace(0, np.nan)
+             dataframes.append(df)
+         
+         # Merge DataFrames by taking the first occurrence of each ID
+         merged_df = pd.concat(dataframes, axis=0, join='outer', ignore_index=True).groupby('ID', as_index=False).first()
+         
+         # Remove any duplicate rows based on the 'ID' column
+         merged_df = merged_df.drop_duplicates(subset=['ID'])
+         
+         # Save the merged DataFrame to the specified output Excel file
+         merged_df.to_excel(output_file, index=False)
+         print(f"Data merged and saved to {output_file}")
+     
+     if __name__ == "__main__":
+         # Set up argument parsing
+         parser = argparse.ArgumentParser(description="Merge .xlsx files in a folder and save the result.")
+         parser.add_argument("input_folder", type=str, help="Path to the folder containing .xlsx files to merge")
+         parser.add_argument("output_file", type=str, help="Path to save the merged output Excel file")
+         
+         # Parse the command-line arguments
+         args = parser.parse_args()
+         
+         # Call the merge function with provided arguments
+         merge_excel_files(args.input_folder, args.output_file)
