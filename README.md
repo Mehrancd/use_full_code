@@ -23,19 +23,19 @@ in slicer python interactor window:
 
 in slicer python interactor window:
 
-     all_nodes = slicer.mrmlScene.GetNodesByClass('vtkMRMLSegmentationNode')
-     # Define the color palette
-     colors = [[0, 0, 255], [0, 85, 255], [0, 170, 255], [0, 255, 255], [170, 255, 255],
-          [255, 255, 0], [255, 170, 0], [255, 85, 0], [255, 0, 0], [255, 0, 255]]
-     # Iterate over all segmentation nodes
-     for segm in all_nodes:
-         # Normalize the colors and assign to each segment
-         for ind, color in enumerate(colors):
-             # Normalize RGB values to 0-1 range
-             normalized_color = [c / 255 for c in color]
-             # Ensure the index is within the range of available segments
-             if ind < segm.GetSegmentation().GetNumberOfSegments():
-                 segm.GetSegmentation().GetNthSegment(ind).SetColor(*normalized_color)
+    all_nodes = slicer.mrmlScene.GetNodesByClass('vtkMRMLSegmentationNode')
+    # Define the color palette
+    colors = [[0, 0, 255], [0, 85, 255], [0, 170, 255], [0, 255, 255], [170, 255, 255],
+         [255, 255, 0], [255, 170, 0], [255, 85, 0], [255, 0, 0], [255, 0, 255]]
+    # Iterate over all segmentation nodes
+    for segm in all_nodes:
+        # Normalize the colors and assign to each segment
+        for ind, color in enumerate(colors):
+            # Normalize RGB values to 0-1 range
+            normalized_color = [c / 255 for c in color]
+            # Ensure the index is within the range of available segments
+            if ind < segm.GetSegmentation().GetNumberOfSegments():
+                segm.GetSegmentation().GetNthSegment(ind).SetColor(*normalized_color)
             
 *-How to stop repeating password on ssh cluster:*
 
