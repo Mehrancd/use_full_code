@@ -1,5 +1,18 @@
 **usefull code in medical image processing and cluster usage**
+*-how to create nnunet env in cluster (13/12/2024):*
 
+     it might not work in future BTW:
+          Creating a clean python 3.10 using venv:
+          source /share/apps/examples/source_files/python/python-3.10.0.source
+          python3 -venv nnunetv2_env
+          source uuunetv2_env/bin/activate
+          pip install torch==2.1.2
+          pip install nnunetv2
+     if missing library  such as blosc2 … so installed that.
+     finally downgrade numpy:
+          pip install numpy==1.24
+     Had missing path to libc, so added the following env variables declaration under the nnunet exports “export PATH=$PATH:/sbin:/usr/sbin”
+     NOTE: Think there are gcc mismatches for the latest versions of torch and annoyingly if you install older versions of torch nnunetv2 updates to 2.1.2 all a bit of a dependency dance tbh.
 
 *-how to find a file in current folder and subfolders in cluster:*
 
