@@ -8,7 +8,7 @@
 
      if you need to train nnunet for segmentation you need to provide images and labels and a json file as:
      nnUNet_results, nnUNet_raw, nnUNet_preprocessed, 
-     in folder nnUNet_raw/ you create a dataset with number and name such as:Dataset1001_M01 and put two folders inside along with dataset.jason as imagesTr, labelsTr. images and labels should have the same name and  _0000 at the end. in jason file:
+     in folder nnUNet_raw/ you create a dataset with number and name such as:Dataset1001_M01 and put two folders inside along with dataset.jason as imagesTr, labelsTr. images and labels should have the same name but images need  _0000 at the end. in jason file:
      {
     "channel_names": {
         "0": "CT"             % this refer to modalities
