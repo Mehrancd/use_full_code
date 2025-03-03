@@ -1,4 +1,5 @@
 **usefull code in medical image processing and cluster usage**
+
 *-how to copy all files from a path1 and subfolders into one path2:*
 
     find path1/ -type f \( -name "*.mhd" -o -name "*.zraw" \) | xargs -d '\n' cp -n -t path2/;
