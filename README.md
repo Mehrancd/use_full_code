@@ -41,15 +41,15 @@
     #$ -l h_rt=100:00:00
     #$ -N EmphGGO2
     #$ -j y
-    #$ -wd /SAN/medic/mcd_SUMMIT/GGO_Emph_segmentation/code
+    #$ -wd /...n/code
     
     date
-    source /share/apps/examples/source_files/python/python-3.10.0.source
-    source /SAN/medic/mcd_SUMMIT/envs/nnUNETV2n124p310t212/bin/activate
+    source /share/a..../source_files/python/python-3.10.0.source
+    source /..../envs/nnUNETV2n124p310t212/bin/activate
     
-    export nnUNet_raw="/SAN/medic/mcd_SUMMIT/GGO_Emph_segmentation/nnUNet_raw"
-    export nnUNet_preprocessed="/SAN/medic/mcd_SUMMIT/GGO_Emph_segmentation/nnUNet_preprocessed"
-    export nnUNet_results="/SAN/medic/mcd_SUMMIT/GGO_Emph_segmentation/nnUNet_results"
+    export nnUNet_raw="..../GGO_Emph_segmentation/nnUNet_raw"
+    export nnUNet_preprocessed="..../GGO_Emph_segmentation/nnUNet_preprocessed"
+    export nnUNet_results=".../GGO_Emph_segmentation/nnUNet_results"
     export PATH=$PATH:/sbin:/usr/sbin
     
     nnUNetv2_plan_and_preprocess -d 1001 --verify_dataset_integrity
@@ -110,7 +110,7 @@ in slicer python interactor window:
     method 2: in linux files→ "Other Locations" → Enter server addresses : ssh://cluster_ID@... and copy-paste
     method 3: create list files (e.g., remote_listing.txt) and run a bash file:
     REMOTE_USER="youruser"
-    REMOTE_HOST="comic" # Use little as it is the most stable cluster node
+    REMOTE_HOST="node in cluster" # Use little as it is the most stable cluster node
     REMOTE_PATH="/cluster/project.../"
     LOCAL_PATH="/path_to_local/"
     RETRY_LIMIT=10
