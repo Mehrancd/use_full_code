@@ -5,6 +5,22 @@
 
 *-how to create nnunet env in cluster (13/12/2024):*
 
+     if you need to train nnunet for segmentation you need to provide images and labels and a json file as:
+     nnUNet_results, nnUNet_raw, nnUNet_preprocessed, 
+     in folder nnUNet_raw/ you create a dataset with number and name such as:Dataset1001_M01 and put two folders inside along with dataset.jason as imagesTr, labelsTr. images and labels should have the same name and  _0000 at the end. in jason file:
+     {
+    "channel_names": {
+        "0": "CT"             % this refer to modalities
+    },
+    "labels": {
+        "background": 0,           % normally where we do not want to segment
+        "Emph": 1,                 % the first label which might be only this
+        "GGO": 2                   % the secnod and so on with any name
+    },
+    "numTraining": 20,             % number of subjects for training, you may use a few to solve issue and then put maximum number 
+    "file_ending": ".nii.gz",      % refer to the extenstion of files, nii, mhd, ...
+    "name": "Emph_GGO",            % optional name for your model
+     Then, you need to create a nnUnet environment as:
      it might not work in future BTW:
           Creating a clean python 3.10 using venv:
           source /share/apps/examples/source_files/python/python-3.10.0.source
@@ -17,7 +33,30 @@
           pip install numpy==1.24
      Had missing path to libc, so added the following env variables declaration under the nnunet exports “export PATH=$PATH:/sbin:/usr/sbin”
      NOTE: Think there are gcc mismatches for the latest versions of torch and annoyingly if you install older versions of torch nnunetv2 updates to 2.1.2 all a bit of a dependency dance tbh.
-
+     Finally, you run this code when source your environment in cluster:
+    #$ -S /bin/bash
+    #$ -l gpu=true
+    #$ -l gpu_type=rtx4090 ##!(gtx1080ti|titanxp|titanx|rtx2080ti)
+    #$ -l tmem=24G
+    #$ -l h_rt=100:00:00
+    #$ -N EmphGGO2
+    #$ -j y
+    #$ -wd /SAN/medic/mcd_SUMMIT/GGO_Emph_segmentation/code
+    
+    date
+    source /share/apps/examples/source_files/python/python-3.10.0.source
+    source /SAN/medic/mcd_SUMMIT/envs/nnUNETV2n124p310t212/bin/activate
+    
+    export nnUNet_raw="/SAN/medic/mcd_SUMMIT/GGO_Emph_segmentation/nnUNet_raw"
+    export nnUNet_preprocessed="/SAN/medic/mcd_SUMMIT/GGO_Emph_segmentation/nnUNet_preprocessed"
+    export nnUNet_results="/SAN/medic/mcd_SUMMIT/GGO_Emph_segmentation/nnUNet_results"
+    export PATH=$PATH:/sbin:/usr/sbin
+    
+    nnUNetv2_plan_and_preprocess -d 1001 --verify_dataset_integrity
+    
+    nnUNetv2_train 1001 3d_fullres all
+    date
+    ## all= uses all images as training
 *-how to find a file in current folder and subfolders in cluster:*
 
 
