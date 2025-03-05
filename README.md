@@ -21,6 +21,8 @@
     "numTraining": 20,             % number of subjects for training, you may use a few to solve issue and then put maximum number 
     "file_ending": ".nii.gz",      % refer to the extenstion of files, nii, mhd, ...
     "name": "Emph_GGO",            % optional name for your model
+    "licence": ""
+    }
      Then, you need to create a nnUnet environment as:
      it might not work in future BTW:
           Creating a clean python 3.10 using venv:
