@@ -27,8 +27,8 @@
      it might not work in future BTW:
           Creating a clean python 3.10 using venv:
           source /share/apps/examples/source_files/python/python-3.10.0.source
-          python3 -venv nnunetv2_env
-          source uuunetv2_env/bin/activate
+          python3 -m venv nnunetv2_env
+          source nnunetv2_env/bin/activate
           pip install torch==2.1.2
           pip install nnunetv2
      if missing library  such as blosc2 … so installed that.
