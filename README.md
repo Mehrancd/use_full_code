@@ -29,7 +29,7 @@
           source /share/apps/examples/source_files/python/python-3.10.0.source
           python3 -m venv nnunetv2_env
           source nnunetv2_env/bin/activate
-          pip install torch==2.1.2
+          pip install torch==2.3.0
           pip install nnunetv2
      if missing library  such as blosc2 … so installed that.
      finally downgrade numpy:
