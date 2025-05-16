@@ -1,4 +1,7 @@
 **usefull code in medical image processing and cluster usage**
+*-how to remove all files in a list.txt from a path:*
+
+    while read -r file; do echo "Would remove: path/${file}_if_extension.mhd"; done < list.txt;
 
 *-how to copy all files from a path1 and subfolders into one path2:*
 
