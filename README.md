@@ -1,4 +1,6 @@
 **usefull code in medical image processing and cluster usage**
+
+
 *-how to find all ipynb files include "model.eval()" in a path:*
     
     grep -r --include="*.ipynb" "model.eval()" /mnt /home /media 2>/dev/null
