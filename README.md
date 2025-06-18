@@ -1,4 +1,9 @@
 **usefull code in medical image processing and cluster usage**
+*-how to find all ipynb files include "model.eval()" in a path:*
+    
+    grep -r --include="*.ipynb" "model.eval()" /mnt /home /media 2>/dev/null
+
+
 *-how to remove all files in a list.txt from a path:*
 
     while read -r file; do echo "Would remove: path/${file}_if_extension.mhd"; done < list.txt;
