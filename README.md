@@ -1,5 +1,32 @@
 **usefull code in medical image processing and cluster usage**
 
+*-how to generate a gif from all 2d images in a path:*
+
+    from PIL import Image
+    import os
+    def create_gif(input_folder, output_gif_path, duration=200, loop=0):
+    # Get all image files from the folder
+    image_files = [f for f in os.listdir(input_folder) 
+                  if f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif'))]
+    # Sort the files if needed (optional)
+    image_files.sort()
+    # Open all images and append to a list
+    images = []
+    for image_file in image_files:
+        image_path = os.path.join(input_folder, image_file)
+        try:
+            img = Image.open(image_path)
+            images.append(img)
+        except Exception as e:
+            print(f"Could not open {image_file}: {e}")
+    # Save as GIF
+    if images:
+        images[0].save(output_gif_path,save_all=True,append_images=images[1:],duration=duration,loop=loop)
+        print(f"GIF created successfully at {output_gif_path}")
+    else:
+        print("No valid images found to create GIF")
+    # Example usage
+    create_gif(input_folder='path/to/your/images',output_gif_path='output.gif',duration=60,  loop=0)
 
 *-how to find all ipynb files include "model.eval()" in a path:*
     
